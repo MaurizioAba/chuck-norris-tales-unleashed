@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -106,7 +105,7 @@ const Index = () => {
             <div className="relative">
               <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400 via-magenta-500 to-yellow-400 blur-lg animate-pulse"></div>
               <img 
-                src="/lovable-uploads/a97d31dd-b4d3-4868-99fb-f595b8732f90.png"
+                src="/lovable-uploads/deffd0e0-0488-4930-85a2-783f5d972005.png"
                 alt="Chuck Norris"
                 className="relative w-24 h-24 md:w-32 md:h-32 rounded-lg border-4 border-cyan-400 shadow-2xl object-cover pixelated"
                 style={{
