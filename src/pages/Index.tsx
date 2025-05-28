@@ -77,182 +77,199 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-400 to-cyan-400 relative overflow-hidden">
-      {/* 90s Background Pattern */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 10px,
-            rgba(255,255,255,0.1) 10px,
-            rgba(255,255,255,0.1) 20px
-          )`
-        }}></div>
+    <div className="min-h-screen bg-black relative overflow-hidden font-mono">
+      {/* Pixelated Grid Background */}
+      <div 
+        className="absolute inset-0 opacity-30"
+        style={{
+          backgroundImage: `
+            linear-gradient(90deg, #00ff00 1px, transparent 1px),
+            linear-gradient(#00ff00 1px, transparent 1px)
+          `,
+          backgroundSize: '20px 20px'
+        }}
+      ></div>
+      
+      {/* Animated Neon Lines */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-magenta-500 to-transparent animate-pulse delay-500"></div>
+        <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-transparent via-yellow-400 to-transparent animate-pulse delay-1000"></div>
+        <div className="absolute right-0 top-0 w-1 h-full bg-gradient-to-b from-transparent via-pink-500 to-transparent animate-pulse delay-1500"></div>
       </div>
 
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-purple-600 via-blue-600 to-teal-600 shadow-2xl">
-        <div className="absolute inset-0 bg-black/30"></div>
-        
-        {/* Neon glow effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 via-pink-400/20 to-cyan-400/20 blur-xl"></div>
-        
-        <div className="relative container mx-auto px-4 py-12 text-center">
-          {/* Chuck Norris Image */}
-          <div className="mb-8 flex justify-center">
+      {/* Header Section */}
+      <div className="relative z-10 container mx-auto px-4 py-8">
+        <div className="text-center mb-8">
+          {/* Chuck Norris Pixelated Avatar */}
+          <div className="mb-6 flex justify-center">
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 blur-lg opacity-75 animate-pulse"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400 via-magenta-500 to-yellow-400 blur-lg animate-pulse"></div>
               <img 
-                src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80"
+                src="/lovable-uploads/a97d31dd-b4d3-4868-99fb-f595b8732f90.png"
                 alt="Chuck Norris"
-                className="relative w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-yellow-400 shadow-2xl object-cover transform hover:scale-105 transition-transform duration-300"
+                className="relative w-24 h-24 md:w-32 md:h-32 rounded-lg border-4 border-cyan-400 shadow-2xl object-cover pixelated"
+                style={{
+                  imageRendering: 'pixelated',
+                  filter: 'contrast(1.2) saturate(1.5)'
+                }}
               />
             </div>
           </div>
 
-          <div className="mb-6">
-            <h1 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-pink-300 to-purple-300 mb-4 drop-shadow-2xl transform skew-y-1 animate-pulse">
-              CHUCK NORRIS
-            </h1>
-            <h2 className="text-xl md:text-3xl font-bold text-cyan-200 mb-6 transform -skew-y-1 drop-shadow-lg">
-              🥋 FACT GENERATOR 🥋
-            </h2>
-            <p className="text-lg text-white max-w-2xl mx-auto bg-black/20 rounded-lg p-4 border border-cyan-300 shadow-xl">
-              Scopri i fatti più incredibili su Chuck Norris! 
-              <br />
-              <span className="text-yellow-300 font-bold">Perché Chuck Norris non legge libri, li fissa fino a quando non gli danno le informazioni che vuole.</span>
-            </p>
-          </div>
+          {/* Neon Title */}
+          <h1 className="text-4xl md:text-6xl font-black mb-4 tracking-wider">
+            <span className="text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.8)] animate-pulse">
+              CHUCK
+            </span>
+            <br />
+            <span className="text-magenta-500 drop-shadow-[0_0_10px_rgba(236,72,153,0.8)] animate-pulse delay-500">
+              NORRIS
+            </span>
+            <br />
+            <span className="text-yellow-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.8)] animate-pulse delay-1000">
+              JOKES
+            </span>
+          </h1>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              onClick={handleRandomJoke}
-              disabled={loading}
-              size="lg"
-              className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:from-yellow-300 hover:to-orange-400 font-black text-lg px-8 py-4 shadow-2xl transform hover:scale-110 transition-all duration-300 border-2 border-yellow-300 animate-bounce"
-            >
-              {loading ? (
-                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-              ) : (
-                <Shuffle className="mr-2 h-5 w-5" />
-              )}
-              🎲 BATTUTA CASUALE 🎲
-            </Button>
-            
-            <Button 
-              variant="outline"
-              size="lg"
-              className="border-2 border-cyan-300 bg-purple-600/80 text-white hover:bg-cyan-400 hover:text-black font-black text-lg px-8 py-4 shadow-2xl transform hover:scale-110 transition-all duration-300"
-              onClick={() => joke && fetchRandomJoke(selectedCategory)}
-              disabled={loading}
-            >
-              <Zap className="mr-2 h-5 w-5" />
-              ⚡ UN'ALTRA! ⚡
-            </Button>
+          <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-1 rounded-lg mb-6">
+            <div className="bg-black p-4 rounded-lg border border-cyan-400">
+              <p className="text-green-400 font-bold text-lg tracking-wide">
+                &gt; LOADING LEGENDARY FACTS...
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="container mx-auto px-4 py-12 relative z-10">
-        {/* Categories Section */}
-        <div className="mb-12">
-          <h3 className="text-3xl font-black text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 drop-shadow-lg transform skew-y-1">
-            🎯 SCEGLI UNA CATEGORIA 🎯
+        {/* Category Selector */}
+        <div className="mb-8">
+          <h3 className="text-2xl font-black text-center mb-6 text-yellow-400 tracking-wider drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
+            [SELECT CATEGORY]
           </h3>
           
           {loadingCategories ? (
             <div className="flex justify-center">
-              <Loader2 className="h-8 w-8 animate-spin text-purple-600" />
+              <div className="text-cyan-400 text-xl animate-pulse">LOADING...</div>
             </div>
           ) : (
-            <div className="flex flex-wrap gap-3 justify-center max-w-5xl mx-auto">
+            <div className="flex flex-wrap gap-2 justify-center max-w-4xl mx-auto">
               {categories.map((category) => (
                 <Button
                   key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
                   onClick={() => handleCategorySelect(category)}
                   disabled={loading}
-                  className={`capitalize font-black text-sm transition-all duration-300 transform hover:scale-110 border-2 shadow-lg ${
+                  className={`capitalize font-black text-sm border-2 transition-all duration-200 ${
                     selectedCategory === category 
-                      ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white border-yellow-400 shadow-2xl animate-pulse' 
-                      : 'border-purple-500 bg-white/90 text-purple-700 hover:bg-gradient-to-r hover:from-pink-400 hover:to-purple-500 hover:text-white hover:border-yellow-400'
+                      ? 'bg-gradient-to-r from-magenta-500 to-purple-600 text-white border-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.8)] animate-pulse' 
+                      : 'bg-black text-green-400 border-green-400 hover:bg-green-400 hover:text-black hover:shadow-[0_0_10px_rgba(34,197,94,0.8)]'
                   }`}
                 >
-                  {category}
+                  {category.toUpperCase()}
                 </Button>
               ))}
             </div>
           )}
         </div>
 
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          <Button 
+            onClick={handleRandomJoke}
+            disabled={loading}
+            size="lg"
+            className="bg-gradient-to-r from-cyan-500 to-blue-600 text-black hover:from-cyan-400 hover:to-blue-500 font-black text-lg px-8 py-4 border-2 border-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.8)] transition-all duration-300 hover:scale-110"
+          >
+            {loading ? (
+              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+            ) : (
+              <Shuffle className="mr-2 h-5 w-5" />
+            )}
+            RANDOM JOKE
+          </Button>
+          
+          <Button 
+            size="lg"
+            className="bg-gradient-to-r from-magenta-500 to-pink-600 text-white hover:from-magenta-400 hover:to-pink-500 font-black text-lg px-8 py-4 border-2 border-magenta-400 shadow-[0_0_20px_rgba(236,72,153,0.8)] transition-all duration-300 hover:scale-110"
+            onClick={() => joke && fetchRandomJoke(selectedCategory)}
+            disabled={loading}
+          >
+            <Zap className="mr-2 h-5 w-5" />
+            ANOTHER ONE!
+          </Button>
+        </div>
+
         {/* Joke Display */}
         {joke && (
           <div className="max-w-4xl mx-auto">
-            <Card className="shadow-2xl border-4 border-yellow-400 bg-gradient-to-br from-white to-cyan-50 backdrop-blur-sm animate-in slide-in-from-bottom-4 duration-500 transform hover:scale-105 transition-transform">
-              <CardHeader className="bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 text-white rounded-t-lg border-b-4 border-yellow-400">
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-2xl font-black transform skew-y-1 drop-shadow-lg">
-                    🔥 CHUCK NORRIS FACT 🔥
-                  </CardTitle>
-                  {joke.categories.length > 0 && (
-                    <div className="flex gap-2">
-                      {joke.categories.map((cat) => (
-                        <Badge key={cat} className="bg-yellow-400 text-black font-bold border-2 border-black shadow-lg">
-                          {cat}
-                        </Badge>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </CardHeader>
-              <CardContent className="p-8 bg-gradient-to-br from-yellow-50 to-pink-50">
-                <blockquote className="text-xl md:text-2xl font-bold text-purple-800 leading-relaxed text-center italic border-l-4 border-purple-600 pl-6 bg-white/80 p-6 rounded-lg shadow-inner">
-                  "⭐ {joke.value} ⭐"
-                </blockquote>
-                <div className="mt-6 text-center">
-                  <p className="text-sm font-bold text-purple-600 bg-yellow-200 inline-block px-4 py-2 rounded-full border-2 border-purple-400 shadow-lg">
-                    🎯 Fatto #{joke.id.slice(-8).toUpperCase()} 🎯
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-1 rounded-lg">
+              <Card className="bg-black border-4 border-cyan-400 shadow-[0_0_30px_rgba(34,211,238,0.5)]">
+                <CardHeader className="bg-gradient-to-r from-green-500 to-cyan-500 text-black rounded-t-lg">
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-xl font-black tracking-wider">
+                      CHUCK NORRIS FACT
+                    </CardTitle>
+                    {joke.categories.length > 0 && (
+                      <div className="flex gap-2">
+                        {joke.categories.map((cat) => (
+                          <Badge key={cat} className="bg-yellow-400 text-black font-black border-2 border-black">
+                            {cat.toUpperCase()}
+                          </Badge>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <div className="bg-gray-900 p-6 rounded-lg border-2 border-green-400">
+                    <blockquote className="text-lg md:text-xl font-bold text-green-400 leading-relaxed text-center font-mono">
+                      &gt; {joke.value}
+                    </blockquote>
+                  </div>
+                  <div className="mt-4 text-center">
+                    <p className="text-sm font-bold text-cyan-400 bg-black inline-block px-4 py-2 rounded border border-cyan-400">
+                      ID: {joke.id.slice(-8).toUpperCase()}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         )}
 
         {/* Initial State */}
         {!joke && !loading && (
-          <div className="text-center py-12">
-            <div className="max-w-md mx-auto bg-white/90 rounded-2xl p-8 border-4 border-purple-500 shadow-2xl transform hover:scale-105 transition-transform">
-              <div className="text-6xl mb-6 animate-bounce">🥋</div>
-              <h3 className="text-2xl font-black text-purple-700 mb-4 transform skew-y-1">
-                Pronto per un fatto su Chuck Norris?
-              </h3>
-              <p className="text-purple-600 font-bold mb-6">
-                Clicca su "BATTUTA CASUALE" o scegli una categoria per iniziare!
-              </p>
+          <div className="text-center py-8">
+            <div className="max-w-md mx-auto bg-gradient-to-r from-purple-600 to-pink-600 p-1 rounded-lg">
+              <div className="bg-black p-8 rounded-lg border-2 border-yellow-400">
+                <div className="text-6xl mb-6 animate-bounce">🥋</div>
+                <h3 className="text-xl font-black text-yellow-400 mb-4 tracking-wider">
+                  READY FOR A CHUCK NORRIS FACT?
+                </h3>
+                <p className="text-green-400 font-bold">
+                  &gt; PRESS "RANDOM JOKE" TO BEGIN
+                </p>
+              </div>
             </div>
           </div>
         )}
       </div>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-purple-800 via-pink-800 to-cyan-800 text-white py-8 mt-16 border-t-4 border-yellow-400">
+      <footer className="bg-gradient-to-r from-gray-900 to-black text-green-400 py-6 border-t-2 border-cyan-400 relative z-10">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-sm font-bold text-yellow-300 mb-2">
-            🚀 Powered by{' '}
+          <p className="text-sm font-bold mb-2">
+            POWERED BY{' '}
             <a 
               href="https://api.chucknorris.io" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-cyan-300 hover:text-yellow-300 transition-colors font-black underline"
+              className="text-cyan-400 hover:text-yellow-400 transition-colors font-black underline"
             >
-              Chuck Norris API
+              CHUCK NORRIS API
             </a>
-            {' '}🚀
           </p>
-          <p className="text-xs text-cyan-200 font-bold bg-black/20 inline-block px-4 py-2 rounded-full">
-            💪 Chuck Norris non usa questo sito web. Questo sito web usa Chuck Norris. 💪
+          <p className="text-xs text-magenta-400 font-bold">
+            © 1990s STYLE WEBPAGE - CHUCK NORRIS APPROVED
           </p>
         </div>
       </footer>
